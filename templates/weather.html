@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Weather</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        body {
+            background-image: url('/static/back.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: black; /* Set text color to white for better visibility */
+        }
+        .form-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black for better contrast */
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px; /* Limit the width of the form */
+            margin: 50px auto; /* Center the form */
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px; /* Spacing for labels */
+        }
+        input[type="text"], input[type="date"] {
+            width: 100%; /* Make inputs take the full width */
+            padding: 10px;
+            margin-bottom: 15px; /* Spacing below inputs */
+            border: none;
+            border-radius: 5px; /* Rounded corners for inputs */
+        }
+        button {
+            background-color: #d37aTc; /* Custom button color */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px; /* Rounded corners for button */
+            cursor: pointer;
+            width: 100%; /* Full width button */
+        }
+        button:hover {
+            background-color: #c264a0; /* Darken button on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Check Weather</h2>
+        <form action="/get_weather" method="POST">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <button type="submit">Get Weather</button>
+        </form>
+    </div>
+</body>
+</html>

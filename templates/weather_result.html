@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Display</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('/static/back.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white; /* Ensure text is readable */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto mt-6">
+        <h2 class="text-3xl font-bold text-center mb-4">Weather for {{ city }}</h2>
+        <div class="mt-4 p-6 bg-black bg-opacity-70 rounded-lg shadow-lg max-w-lg mx-auto">
+            {% if weather_data %}
+                {% if weather_data['location'] %}
+                    <p class="text-lg text-white text-center mb-2">
+                        <strong>Location:</strong> {{ weather_data['location']['name'] }}, {{ weather_data['location']['country'] }}
+                    </p>
+                {% endif %}
+                {% if weather_data['current'] %}
+                    <div class="flex items-center justify-center mb-4">
+                        <img src="{{ weather_data['current']['condition']['icon'] }}" alt="{{ weather_data['current']['condition']['text'] }}" class="w-16 h-16 mr-4">
+                        <div class="text-lg text-white">
+                            <p><strong>Temperature:</strong> {{ weather_data['current']['temp_c'] }} °C</p>
+                            <p><strong>Condition:</strong> {{ weather_data['current']['condition']['text'] }}</p>
+                        </div>
+                    </div>
+                {% elif weather_data['forecast'] %}
+                    <div class="flex items-center justify-center mb-4">
+                        <img src="{{ weather_data['forecast']['forecastday'][0]['day']['condition']['icon'] }}" alt="{{ weather_data['forecast']['forecastday'][0]['day']['condition']['text'] }}" class="w-16 h-16 mr-4">
+                        <div class="text-lg text-white">
+                            <p><strong>Temperature:</strong> {{ weather_data['forecast']['forecastday'][0]['day']['avgtemp_c'] }} °C</p>
+                            <p><strong>Condition:</strong> {{ weather_data['forecast']['forecastday'][0]['day']['condition']['text'] }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <p class="text-lg text-red-500 text-center">No weather data available.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
